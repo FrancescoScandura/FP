@@ -16,6 +16,11 @@ public class Tests
     }
 
     [Fact]
+    public void Apply_CalledOnSome_WithSome_ShouldReturnSome()
+        =>
+            Assert.True(Some(Add10).Apply(Some(1)).IsSome());
+    
+    [Fact]
     public void Apply_CalledOnNone_WithSome_ShouldReturnNone()
         =>
             Assert.Equal(None,

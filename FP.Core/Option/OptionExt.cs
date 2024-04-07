@@ -5,6 +5,16 @@ using static Prelude;
 
 public static class OptionExt
 {
+    public static bool IsSome<T>(this Option<T> @this)
+        => @this.Match(
+            () => false,
+            (_) => true);
+    public static Option<R> Map<T, R>(this Option<T> @this,
+        Func<T, R> f)
+        => @this.Match(
+            () => None,
+            (t) => Some(f(t)));
+    
     public static Option<R> Apply<T, R>
         (this Option<Func<T, R>> @this, Option<T> arg)
         => @this.Match(
@@ -12,7 +22,7 @@ public static class OptionExt
             (func) => arg.Match(
                 () => None,
                 (val) => Some(func(val))));
-
+    
     public static Unit Match<T>(this Option<T> option,
         Action None, Action<T> Some)
         => option.Match(None.ToFunc(), Some.ToFunc());
