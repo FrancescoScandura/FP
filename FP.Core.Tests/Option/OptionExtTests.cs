@@ -47,3 +47,42 @@ public class Option_ForEach_Tests
         Assert.Equal("Hello, Francesco", globalState);
     }
 }
+
+public class Option_Bind_Tests
+{
+    [Fact]
+    public void Bind_OnSome_WithSome_ShouldReturnSome()
+    {
+        var func1 = (string s) => Some($"Func 1 {s}");
+        var func2 = (string s) => Some($"Func 2 {s}");
+        var someString = Some("Hello");
+        
+        var binded = someString.Bind(func1).Bind(func2);
+        
+        Assert.True(binded.IsSome());
+    }
+    
+    [Fact]
+    public void Bind_OnSome_WithNone_ShouldReturnNone()
+    {
+        var func1 = (string s) => Some($"Func 1 {s}");
+        Func<string, Option<string>> func2 = _ => None;
+        var someString = Some("Hello");
+        
+        var binded = someString.Bind(func1).Bind(func2);
+        
+        Assert.False(binded.IsSome());
+    }
+    
+    [Fact]
+    public void Bind_OnNone_ShouldReturnNone()
+    {
+        var func1 = (string s) => Some($"Func 1 {s}");
+        var func2 = (string s) => Some($"Func 2 {s}");
+        Option<string> someString = None;
+        
+        var binded = someString.Bind(func1).Bind(func2);
+        
+        Assert.False(binded.IsSome());
+    }
+}
