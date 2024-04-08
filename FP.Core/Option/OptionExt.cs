@@ -26,4 +26,13 @@ public static class OptionExt
     public static Unit Match<T>(this Option<T> option,
         Action None, Action<T> Some)
         => option.Match(None.ToFunc(), Some.ToFunc());
+
+    public static Option<Unit> ForEach<T>(this Option<T> opt,
+        Action<T> action)
+        => Map(opt, action.ToFunc());
+
+    public static Option<R> Bind<T, R>(Option<T> opt, Func<T, Option<R>> f)
+        => opt.Match(
+            () => None,
+            (t) => f(t));
 }
