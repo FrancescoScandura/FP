@@ -1,10 +1,9 @@
 using FP.Core.Option;
-using FsCheck.Xunit;
 using Xunit;
 
 namespace FP.Core.Tests.Option;
 
-using static Prelude;
+using static FP.Core.Prelude.Prelude;
 
 public class Tests
 {

@@ -1,7 +1,7 @@
-﻿namespace FP.Core.Option;
-
+﻿using static FP.Core.Prelude.Prelude;
 using Unit = System.ValueTuple;
-using static Prelude;
+
+namespace FP.Core.Option;
 
 public static class OptionExt
 {

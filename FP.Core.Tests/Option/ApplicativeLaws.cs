@@ -4,7 +4,7 @@ using Xunit;
 
 namespace FP.Core.Tests.Option;
 
-using static Prelude;
+using static FP.Core.Prelude.Prelude;
 
 public static class ApplicativeLaws
 {

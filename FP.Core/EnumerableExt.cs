@@ -3,7 +3,7 @@ using FP.Core.Option;
 
 namespace FP.Core;
 
-using static Prelude;
+using static FP.Core.Prelude.Prelude;
 using Unit = System.ValueTuple;
 public static class EnumerableExt
 {

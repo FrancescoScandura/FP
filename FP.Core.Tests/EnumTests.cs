@@ -1,9 +1,8 @@
-﻿using FP.Core.Option;
-using Xunit;
+﻿using Xunit;
 
 namespace FP.Core.Tests;
 
-using static Prelude;
+using static FP.Core.Prelude.Prelude;
 
 public class EnumTests
 {

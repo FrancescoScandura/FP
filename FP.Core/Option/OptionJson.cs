@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-using static FP.Core.Option.Prelude;
+using static FP.Core.Prelude.Prelude;
 
 namespace FP.Core.Option;
 
