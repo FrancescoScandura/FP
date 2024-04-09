@@ -34,5 +34,10 @@ namespace FP.Core.Option
 
         public R Match<R>(Func<R> None, Func<T, R> Some)
             => _isSome ? Some(_value!) : None();
+
+        public IEnumerable<T> AsEnumerable()
+        {
+            if (_isSome) yield return _value!;
+        }
     }
 }

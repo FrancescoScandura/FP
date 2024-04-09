@@ -86,3 +86,23 @@ public class Option_Bind_Tests
         Assert.False(binded.IsSome());
     }
 }
+
+public class Option_Where_Tests
+{
+    [Fact]
+    public void Where_OnNone_Should_ReturnNone()
+    {
+        var positive = Int.Parse("asd").Where(i => i > 0);
+        Assert.Equal(None, positive);
+    }
+    
+    [Fact]
+    public void Where_Should_Filter()
+    {
+        var positive = List("-1", "-2", "-3", "3")
+            .Select(i => Int.Parse(i).Where(n => n > 0))
+            .Where(x => x.IsSome());
+        
+        Assert.Single(positive);
+    }
+}

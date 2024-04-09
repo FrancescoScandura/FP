@@ -31,8 +31,19 @@ public static class OptionExt
         Action<T> action)
         => Map(opt, action.ToFunc());
 
-    public static Option<R> Bind<T, R>(this Option<T> opt, Func<T, Option<R>> f)
+    public static Option<R> Bind<T, R>
+        (this Option<T> opt, Func<T, Option<R>> f)
         => opt.Match(
             () => None,
             (t) => f(t));
+
+    public static IEnumerable<R> Bind<T, R>
+        (this Option<T> opt, Func<T, IEnumerable<R>> f)
+        => opt.AsEnumerable().SelectMany(f);
+
+    public static Option<T> Where<T>
+        (this Option<T> opt, Func<T, bool> predicate)
+        => opt.Match(
+            () => None,
+            (t) => predicate(t) ? opt : None);
 }
